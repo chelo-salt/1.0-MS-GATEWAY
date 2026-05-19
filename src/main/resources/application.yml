@@ -1,0 +1,63 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: ms-gateway
+
+  cloud:
+    gateway:
+      routes:
+        # 1. 🛡️ Microservicio de Autenticación (ms-auth)
+        - id: ms-auth
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/v1/auth/**
+
+        # 2. ⚽ Microservicio de Canchas (ms-canchas)
+        - id: ms-canchas
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/canchas/**
+
+        # 3. 💰 Microservicio de Pagos (ms-pagos)
+        - id: ms-pagos
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/pagos/**
+
+        # 4. 📅 Microservicio de Reservas (ms-reservas)
+        - id: ms-reservas
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/reservas/**
+
+        # 5. ⏱️ Microservicio de Disponibilidad (ms-disponibilidad)
+        - id: ms-disponibilidad
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/v1/disponibilidad/**
+
+        # 6. 🧠 Microservicio de Restricciones (ms-restricciones)
+        - id: ms-restricciones
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/v1/restricciones/**
+
+        # 7. 📬 Microservicio de Notificaciones (ms-notificaciones)
+        - id: ms-notificaciones
+          uri: http://localhost:8086
+          predicates:
+            - Path=/api/v1/notificaciones/**
+
+        # 8. 📊 Microservicio de Reportes (ms-reportes)
+        - id: ms-reportes
+          uri: http://localhost:8087
+          predicates:
+            - Path=/api/v1/reportes/**
+
+        # 9. 🛠️ Microservicio de Soporte (ms-soporte)
+        - id: ms-soporte
+          uri: http://localhost:8088
+          predicates:
+            - Path=/api/v1/soporte/**
